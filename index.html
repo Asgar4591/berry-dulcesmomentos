@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berry - Dulces Momentos</title>
+    <link rel="icon" type="image/png" href="Documentos/favicon.png">
+    <style>
+        /* Paleta de Colores basada en tu imagen */
+        :root {
+            --rosa-principal: #e98fb0;
+            --rosa-suave: #fce4ec;
+            --gris-azul: #607d8b;
+            --crema-fondo: #fff9f0;
+            --texto-oscuro: #5d4037;
+        }
+
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background-color: var(--crema-fondo); color: var(--texto-oscuro); scroll-behavior: smooth; }
+
+        /* Logo y Slogan */
+        .logo-container { text-align: center; padding: 20px; background: white; }
+        .logo-container h1 { color: var(--rosa-principal); font-size: 3rem; margin: 0; font-family: 'Georgia', serif; }
+        .logo-container p { margin: 0; font-style: italic; color: var(--gris-azul); letter-spacing: 2px; }
+
+        /* Navegación */
+        nav { display: flex; justify-content: center; gap: 15px; background: var(--gris-azul); padding: 12px; position: sticky; top: 0; z-index: 1000; }
+        nav a { color: white; text-decoration: none; font-size: 0.9rem; font-weight: bold; text-transform: uppercase; }
+
+        /* Banner Dinámico */
+        .banner { width: 100%; height: 350px; overflow: hidden; position: relative; border-bottom: 5px solid var(--rosa-principal); }
+        .slides { display: flex; width: 400%; height: 100%; transition: transform 0.8s ease-in-out; }
+        .slides img { width: 25%; height: 100%; object-fit: cover; }
+
+        /* Catálogo */
+        .container { max-width: 1100px; margin: auto; padding: 40px 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+        
+        .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center; border: 1px solid #eee; }
+        .card img { width: 100%; height: 200px; object-fit: cover; }
+        .card h3 { font-size: 1.1rem; margin: 10px 0; color: var(--gris-azul); }
+        
+        .btn-wa { background: var(--rosa-principal); color: white; border: none; padding: 10px 15px; border-radius: 20px; cursor: pointer; margin-bottom: 15px; width: 85%; font-weight: bold; transition: 0.3s; }
+        .btn-wa:hover { background: #d87698; transform: scale(1.05); }
+
+        /* Misión y Visión */
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; background: #fffde7; padding: 30px; border-radius: 15px; margin: 40px 0; }
+        @media (max-width: 600px) { .info-grid { grid-template-columns: 1fr; } }
+
+        /* Formulario */
+        .contacto { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .form-group { margin-bottom: 15px; }
+        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; margin-top: 5px; }
+        .btn-enviar { background: var(--gris-azul); color: white; border: none; padding: 15px; border-radius: 25px; width: 100%; cursor: pointer; font-size: 1rem; }
+    </style>
+</head>
+<body>
+
+<div class="logo-container">
+    <h1>Berry</h1>
+    <p>Dulces momentos</p>
+</div>
+
+<nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#postres">Postres</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#contacto">Pedidos</a>
+</nav>
+
+<div class="banner" id="inicio">
+    <div class="slides" id="bannerSlides">
+        <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=1200" alt="Carlota">
+        <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?q=80&w=1200" alt="Gelatina">
+        <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?q=80&w=1200" alt="Tapioca">
+        <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?q=80&w=1200" alt="Postre">
+    </div>
+</div>
+
+<div class="container" id="postres">
+    <h2 style="text-align:center; color: var(--rosa-principal);">Catálogo de Postres (7oz)</h2>
+    <div class="grid" id="productosGrid"></div>
+</div>
+
+<div class="container" id="nosotros">
+    <div class="info-grid">
+        <div>
+            <h3 style="color: var(--rosa-principal);">Nuestra Misión</h3>
+            <p>Crear experiencias dulces y memorables a través de postres artesanales en vaso de cristal, garantizando frescura y calidad tanto para clientes finales como para socios restauranteros.</p>
+        </div>
+        <div>
+            <h3 style="color: var(--rosa-principal);">Nuestra Visión</h3>
+            <p>Ser la opción favorita de postres gourmet en la región, destacando por nuestra elegancia en la presentación de 7oz y el sabor auténtico de "Berry".</p>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="contacto">
+    <div class="contacto">
+        <h2 style="text-align:center;">Contáctanos</h2>
+        <form id="berryForm">
+            <div class="form-group">
+                <label>Nombre o Restaurante:</label>
+                <input type="text" id="nombre" required>
+            </div>
+            <div class="form-group">
+                <label>Tipo de Cliente:</label>
+                <select id="tipo">
+                    <option value="Final">Usuario Final</option>
+                    <option value="Restaurante">Restaurante</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Tu Pedido:</label>
+                <textarea id="pedido" rows="4" placeholder="Ej: 10 Carlotas de Limón..."></textarea>
+            </div>
+            <button type="submit" class="btn-enviar">Enviar Pedido por Correo</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // 1. Lógica del Banner Automático (Cada 4 segundos)
+    let index = 0;
+    const slides = document.getElementById('bannerSlides');
+    setInterval(() => {
+        index++;
+        if (index > 3) index = 0;
+        slides.style.transform = `translateX(-${index * 25}%)`;
+    }, 4000);
+
+    // 2. Datos de Productos
+    const productos = [
+        { n: "Carlota de Limón", img: "https://via.placeholder.com/300x200?text=Limon" },
+        { n: "Carlota de Café", img: "https://via.placeholder.com/300x200?text=Cafe" },
+        { n: "Tapioca", img: "https://via.placeholder.com/300x200?text=Tapioca" },
+        { n: "Gelatina de Fresa", img: "https://via.placeholder.com/300x200?text=Fresa" },
+        { n: "Gelatina Mosaico", img: "https://via.placeholder.com/300x200?text=Mosaico" },
+        { n: "Gelatina de Galleta", img: "https://via.placeholder.com/300x200?text=Galleta" }
+    ];
+
+    const grid = document.getElementById('productosGrid');
+    productos.forEach(p => {
+        grid.innerHTML += `
+            <div class="card">
+                <img src="${p.img}" alt="${p.n}">
+                <h3>${p.n}</h3>
+                <p>Vaso 7oz Cristal</p>
+                <button class="btn-wa" onclick="enviarWA('${p.n}')">Pedir por WhatsApp</button>
+            </div>
+        `;
+    });
+
+    function enviarWA(p) {
+        const t = "521234567890"; // Reemplaza con tu número
+        window.open(`https://wa.me/${t}?text=Hola Berry! Me interesa el postre: ${p}`, '_blank');
+    }
+
+    document.getElementById('berryForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const n = document.getElementById('nombre').value;
+        const ped = document.getElementById('pedido').value;
+        window.location.href = `mailto:tu-correo@ejemplo.com?subject=Pedido de ${n}&body=${ped}`;
+    });
+</script>
+
+</body>
+</html>
