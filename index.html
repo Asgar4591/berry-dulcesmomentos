@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Berry - Dulces Momentos</title>
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="favicon.ico">
     <style>
         /* Paleta de Colores basada en tu imagen */
         :root {
@@ -28,7 +28,7 @@
 
         /* Banner Dinámico */
         .banner { width: 100%; height: 350px; overflow: hidden; position: relative; border-bottom: 5px solid var(--rosa-principal); }
-        .slides { display: flex; width: 400%; height: 100%; transition: transform 0.8s ease-in-out; }
+        .slides { display: flex; width: 650%; height: 100%; transition: transform 0.8s ease-in-out; }
         .slides img { width: 25%; height: 100%; object-fit: cover; }
 
         /* Catálogo */
@@ -69,15 +69,16 @@
 
 <div class="banner" id="inicio">
     <div class="slides" id="bannerSlides">
-        <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=1200" alt="Carlota">
-        <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?q=80&w=1200" alt="Gelatina">
-        <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?q=80&w=1200" alt="Tapioca">
-        <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?q=80&w=1200" alt="Postre">
+        <img src="carlotalim.png" alt="Carlota de limón">
+        <img src="cafe.png" alt="Carlota de café">
+        <img src="tapioca.png" alt="Tapioca">
+        <img src="mosaico.png" alt="Gelatia de mosaico">
+        <img src="fresa.png" alt="gelatina de fresa">
     </div>
 </div>
 
 <div class="container" id="postres">
-    <h2 style="text-align:center; color: var(--rosa-principal);">Catálogo de Postres (7oz)</h2>
+    <h2 style="text-align:center; color: var(--rosa-principal);">Catálogo de Postres </h2>
     <div class="grid" id="productosGrid"></div>
 </div>
 
@@ -130,12 +131,12 @@
 
     // 2. Datos de Productos
     const productos = [
-        { n: "Carlota de Limón", img: "https://via.placeholder.com/300x200?text=Limon" },
-        { n: "Carlota de Café", img: "https://via.placeholder.com/300x200?text=Cafe" },
-        { n: "Tapioca", img: "https://via.placeholder.com/300x200?text=Tapioca" },
-        { n: "Gelatina de Fresa", img: "https://via.placeholder.com/300x200?text=Fresa" },
-        { n: "Gelatina Mosaico", img: "https://via.placeholder.com/300x200?text=Mosaico" },
-        { n: "Gelatina de Galleta", img: "https://via.placeholder.com/300x200?text=Galleta" }
+        { n: "Carlota de Limón", img: "carlotalim.png" },
+        { n: "Carlota de Café", img: "cafe.png" },
+        { n: "Tapioca", img: "tapioca.png" },
+        { n: "Gelatina de Fresa", img: "fresa.png" },
+        { n: "Gelatina Mosaico", img: "mosaico.png" },
+        { n: "Gelatina de Galleta", img: "galleta.png" }
     ];
 
     const grid = document.getElementById('productosGrid');
