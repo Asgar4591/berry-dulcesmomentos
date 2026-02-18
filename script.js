@@ -12,7 +12,7 @@ const productos=[
 const grid=document.getElementById("grid");
 const cartItems=document.getElementById("cartItems");
 
-let carrito=[];
+let carrito=JSON.parse(localStorage.getItem("carrito")) || [];
 
 /* ================= RENDER PRODUCTOS ================= */
 
@@ -35,7 +35,32 @@ grid.innerHTML+=`
 
 function addCart(index){
 
-carrito.push(productos[index]);
+let producto=productos[index];
+
+let existente=carrito.find(p=>p.nombre===producto.nombre);
+
+if(existente){
+
+existente.cantidad++;
+
+}else{
+
+carrito.push({...producto,cantidad:1});
+
+}
+
+guardar();
+
+mostrarToast();
+
+}
+
+
+/* ================= GUARDAR LOCAL ================= */
+
+function guardar(){
+
+localStorage.setItem("carrito",JSON.stringify(carrito));
 
 actualizarCarrito();
 
@@ -51,32 +76,71 @@ let total=0;
 
 carrito.forEach((item,i)=>{
 
-total+=item.precio;
+total+=item.precio*item.cantidad;
 
 cartItems.innerHTML+=`
+
 <div class="cartItem">
-${item.nombre} - $${item.precio}
-<button onclick="eliminar(${i})">❌</button>
+
+<div>
+${item.nombre}<br>
+$${item.precio}
+</div>
+
+<div class="qty">
+
+<button onclick="restar(${i})">-</button>
+
+<span>${item.cantidad}</span>
+
+<button onclick="sumar(${i})">+</button>
+
+<button onclick="eliminar(${i})">🗑</button>
+
+</div>
+
 </div>
 `;
 
 });
 
-cartItems.innerHTML+=`<h3>Total: $${total}</h3>`;
+document.getElementById("total").innerText="Total: $"+total;
 
-document.getElementById("count").innerText=carrito.length;
+document.getElementById("count").innerText=
+carrito.reduce((acc,p)=>acc+p.cantidad,0);
 
 }
 
-/* ================= ELIMINAR PRODUCTO ================= */
+function sumar(index){
+
+carrito[index].cantidad++;
+
+guardar();
+
+}
+
+function restar(index){
+
+carrito[index].cantidad--;
+
+if(carrito[index].cantidad<=0){
+
+carrito.splice(index,1);
+
+}
+
+guardar();
+
+}
 
 function eliminar(index){
 
 carrito.splice(index,1);
 
-actualizarCarrito();
+guardar();
 
 }
+
 
 /* ================= ABRIR/CERRAR CARRITO ================= */
 
@@ -84,7 +148,65 @@ function toggleCart(){
 
 document.getElementById("cartPanel").classList.toggle("active");
 
+document.getElementById("overlay").classList.toggle("active");
+
 }
+
+/* ================= COMPRA WHATSAPP ================= */
+
+function comprarWhatsapp(){
+
+if(carrito.length===0){
+
+alert("Tu carrito está vacío");
+
+return;
+
+}
+
+let mensaje="Hola, quiero pedir:%0A";
+
+let total=0;
+
+carrito.forEach(item=>{
+
+mensaje+=`- ${item.nombre} x${item.cantidad} = $${item.precio*item.cantidad}%0A`;
+
+total+=item.precio*item.cantidad;
+
+});
+
+mensaje+=`Total: $${total}`;
+
+let numero="5210000000000"; // cambia por tu número
+
+window.open(`https://wa.me/${numero}?text=${mensaje}`);
+
+}
+
+/* ================= INICIO ================= */
+
+actualizarCarrito();
+
+function mostrarToast(){
+
+const toast=document.getElementById("toast");
+
+toast.classList.add("show");
+
+setTimeout(()=>{
+
+toast.classList.remove("show");
+
+},2000);
+
+}
+
+
+
+
+
+
 
 /* ================= SLIDER DINAMICO ================= */
 
@@ -132,3 +254,75 @@ prev.addEventListener("click",anterior);
 /* AUTO SLIDE */
 
 setInterval(siguiente,4000);
+
+
+function mostrarToast(){
+
+const toast=document.getElementById("toast");
+
+toast.classList.add("show");
+
+setTimeout(()=>{
+
+toast.classList.remove("show");
+
+},2000);
+
+}
+
+
+/* ================= FORMULARIO CLIENTES ================= */
+
+const form = document.getElementById("formCliente");
+
+if(form){
+
+form.addEventListener("submit", function(e){
+
+e.preventDefault();
+
+const cliente = {
+
+nombre: document.getElementById("nombre").value,
+telefono: document.getElementById("telefono").value,
+email: document.getElementById("email").value,
+direccion: document.getElementById("direccion").value,
+mensaje: document.getElementById("mensaje").value,
+fecha: new Date().toLocaleString()
+
+};
+
+// Obtener base existente
+let baseClientes = JSON.parse(localStorage.getItem("clientes")) || [];
+
+// Guardar nuevo cliente
+baseClientes.push(cliente);
+
+localStorage.setItem("clientes", JSON.stringify(baseClientes));
+
+alert("Datos enviados correctamente 🍓");
+
+form.reset();
+
+});
+
+}
+
+/* ================= MODAL FORMULARIO ================= */
+
+function abrirFormulario(){
+
+document.getElementById("modalFormulario").classList.add("active");
+
+}
+
+function cerrarFormulario(){
+
+document.getElementById("modalFormulario").classList.remove("active");
+
+}
+
+
+
+
+

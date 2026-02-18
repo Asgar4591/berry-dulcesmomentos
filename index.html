@@ -63,6 +63,33 @@
 </div>
 
 <div class="container">
+<div class="modalFormulario" id="modalFormulario">
+
+<div class="modalContenido">
+
+<button class="cerrarModal" onclick="cerrarFormulario()">✖</button>
+
+<h2>Realiza tu pedido o déjanos tus datos</h2>
+
+<form id="formCliente">
+
+<input type="text" id="nombre" placeholder="Nombre completo" required>
+
+<input type="tel" id="telefono" placeholder="Teléfono / WhatsApp" required>
+
+<input type="email" id="email" placeholder="Correo electrónico">
+
+<input type="text" id="direccion" placeholder="Dirección de entrega">
+
+<textarea id="mensaje" placeholder="¿Qué postre deseas o comentario?"></textarea>
+
+<button type="submit">Enviar información</button>
+
+</form>
+
+</div>
+
+</div>
 
 <div class="sidebar">
 
@@ -75,6 +102,8 @@
 <h2>Visión</h2>
 <p>Ser la tienda de postres online favorita, rápida e instagrameable.</p>
 </div>
+
+
 
 </div>
 
@@ -93,15 +122,50 @@
 <div class="count" id="count">0</div>
 </div>
 
-<!-- PANEL CARRITO -->
+<!-- OVERLAY OSCURO -->
+
+<div class="overlay" id="overlay" onclick="toggleCart()"></div>
+
+<!-- NOTIFICACION TOAST -->
+
+<div class="toast" id="toast">
+Producto agregado 🛒
+</div>
+
+
+<!-- PANEL CARRITO PRO -->
 
 <div class="cartPanel" id="cartPanel">
+
+<div class="cartHeader">
 <h2>Tu pedido</h2>
-<div id="cartItems"></div>
+<button class="closeCart" onclick="toggleCart()">✖</button>
 </div>
+
+<div id="cartItems"></div>
+
+<h3 id="total"></h3>
+
+<button class="btnComprar" onclick="comprarWhatsapp()">
+Comprar por WhatsApp
+</button>
+
+</div>
+
 <!-- ================= FOOTER ================= -->
 
 <footer class="footer" id="pedidos">
+
+<!-- ================= FORMULARIO CLIENTES ================= -->
+
+<!-- ================= MODAL FORMULARIO ================= -->
+
+
+<button class="btnFormulario" onclick="abrirFormulario()">
+Realizar pedido 🍓
+</button>
+
+
 
 <div class="footer-contenido">
 
@@ -109,6 +173,7 @@
 <h3>Berry</h3>
 <p>Dulces momentos que conectan emociones.</p>
 </div>
+
 
 <div class="footer-contacto" id="contacto">
 <h4>Pedidos rápidos</h4>
@@ -118,6 +183,7 @@
 </a>
 
 </div>
+
 
 </div>
 
