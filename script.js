@@ -178,7 +178,7 @@ total+=item.precio*item.cantidad;
 
 mensaje+=`Total: $${total}`;
 
-let numero="5210000000000"; // cambia por tu número
+let numero="524921718654"; // cambia por tu número
 
 window.open(`https://wa.me/${numero}?text=${mensaje}`);
 
